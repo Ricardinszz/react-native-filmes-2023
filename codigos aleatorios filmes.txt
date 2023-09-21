@@ -1,0 +1,28 @@
+*#CODIGO ALEATORIO#*
+import React, { useState } from 'react'
+import { Button, Text } from 'react-native-paper'
+
+
+const FilmesPopulares = () => {
+
+  const [filmes, setFilmes] = useState(['Palio', 'Fiat', 'Gol'])
+
+  //let filmes = ['Palio', 'Fiat', 'Gol']
+
+  function alterar() {
+    setFilmes(['Palio', 'Fiat', 'Gol', 'Virtus', 'Uno', 'Celta'])
+  }
+
+  return (
+    <>
+      <Button onPress={alterar}>Alterar Array</Button>
+      <Text>Qtd carros= {filmes.length}</Text>
+      {filmes.map(item => (
+        <Text>{item}</Text>
+      ))}
+    </>
+  )
+}
+
+export default FilmesPopulares
+

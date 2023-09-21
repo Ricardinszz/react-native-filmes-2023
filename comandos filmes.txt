@@ -1,0 +1,116 @@
+#baixar o node#
+#baixar o git#
+
+#criar a base#
+npm i npm -g
+npx create-expo-app conceitos
+npx expo start
+
+#react native paper#
+npm install react-native-paper
+npm install react-native-safe-area-context
+
+#usando celular#
+npx expo install react-native-web@~0.19.6
+npx expo install react-dom@18.2.0
+npx expo install @expo/webpack-config
+
+#instalar sem o pc#
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    }
+  }
+}
+
+#navgation / navbat#
+npm install @react-navigation/native @react-navigation/native-stack
+npx expo install react-native-screens react-native-safe-area-context
+
+
+#navegar entre as paginas
+1- colocar o {navigation}
+const FilmesPopulares = ({navigation}) => {
+
+//chamar o navigation.push
+2 - onPress={()=>navigation.push('filmes-detalhes', {id: item.id})}>
+
+
+#configurar email do git#
+git config --global user.name "Ricardo Dos Santos"
+git config --global user.email "ricardo.privado5050@gmail.com"
+git remote remove "nome do repositorio"
+
+
+#url aleatoria#
+npm i axios
+http://localhost
+
+https://api.themoviedb.org/3/movie/popular
+
+https://api.themoviedb.org/3/movie/popular?api_key=e080761271ca1e67b77a3d631deafa02
+
+
+-------------------------------------------------------------------------------------------------------------
+#treino prova#
+import react, { useEffect, useState } from 'react'
+import { Card, Text } from 'react-native-paper'
+import apiFilmes from '../../services/apiFilmes'
+import { ScrollView } from 'react-native'
+
+export const FilmesDetalhes = ({ navigation, route }) => {
+
+  const [filme, setFilme] = useState([])
+  const [atores, setAtores] = useState([])
+
+  useEffect(() => {
+    const id = route.params.id
+    apiFilmes.get(`/movie/${id}`).then(resultado => {
+      setFilme(resultado.data)
+    })
+    apiFilmes.get(`/movie/${id}/credits`).then(resultado => {
+      setAtores(resultado.data.cast)
+    })
+
+
+  }, [])
+
+
+  return (
+    <>
+      <ScrollView>
+        <Card>
+          <Card.Cover source={{ uri: 'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path }} />
+          <Card.Content>
+            <Text variant="titleLarge">{filme.title}</Text>
+            <Text variant="bodyMedium">{filme.overview}</Text>
+          </Card.Content>
+        </Card>
+        <Card>
+          <Text variant="bodyMedium">{filme.overview}</Text>
+          <Text variant="bodyMedium">{filme.overview}</Text>
+          <Text variant="bodyMedium">{filme.overview}</Text>
+        </Card>
+
+        {atores.map(item => (
+            <Card style={{marginTop: 50, margin: 10}}key={item.id} >
+              <Card.Title
+              title={item.character}
+              subtitle={item.name}
+
+            />
+            </Card>
+
+
+        ))}
+
+      </ScrollView>
+    </>
+  )
+}
+
+export default FilmesDetalhes
+----------------------------------------------------------------------------------
+prova-ricardo-santos
+
