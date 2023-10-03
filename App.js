@@ -6,23 +6,60 @@ import FilmesPopulares from './screens/filmes/FilmesPopulares';
 import { PaperProvider } from 'react-native-paper';
 import FilmesDetalhes from './screens/filmes/FilmesDetalhes';
 import Atores from './screens/filmes/Atores';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FilmesStack from './screens/filmes/FilmesStack';
 
-const Stack = createNativeStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
   return (
     <>
-
       <PaperProvider >
         <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name='filmes-populares' component={FilmesPopulares} options={{ title:'Populares'}} />
-            <Stack.Screen name='filmes-detalhes' component={FilmesDetalhes} options={{ title:'Detalhes'}} />
-            <Stack.Screen name='atores-detalhes' component={Atores} options={{ title:'Atores'}} />
-          </Stack.Navigator>
+          <Tab.Navigator>
+            <Tab.Screen
+              name="Filmes"
+              component={FilmesStack}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="movie" size={26} />
+                ),
+              }}
+            />
+
+            <Tab.Screen
+              name="Series"
+              component={FilmesPopulares}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="remote-tv" size={26} />
+                ),
+              }}
+            />
+
+            <Tab.Screen
+              name="Atores"
+              component={FilmesPopulares}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="account" size={26} />
+                ),
+              }}
+            />
+
+            <Tab.Screen
+              name="Configurações"
+              component={FilmesPopulares}
+              options={{
+                tabBarIcon: () => (
+                  <MaterialCommunityIcons name="cog" size={26} />
+                ),
+              }}
+            />
+          </Tab.Navigator>
         </NavigationContainer>
       </PaperProvider>
     </>
-
   );
 }
