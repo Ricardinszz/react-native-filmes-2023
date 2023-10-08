@@ -9,6 +9,8 @@ import Atores from './screens/filmes/Atores';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FilmesStack from './screens/filmes/FilmesStack';
+import SeriesStack from './screens/series/SeriesStack';
+import AtoresStack from './screens/Atores/AtoresStack';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -30,7 +32,7 @@ export default function App() {
 
             <Tab.Screen
               name="Series"
-              component={FilmesPopulares}
+              component={SeriesStack}
               options={{
                 tabBarIcon: () => (
                   <MaterialCommunityIcons name="remote-tv" size={26} />
@@ -40,7 +42,7 @@ export default function App() {
 
             <Tab.Screen
               name="Atores"
-              component={FilmesPopulares}
+              component={AtoresStack}
               options={{
                 tabBarIcon: () => (
                   <MaterialCommunityIcons name="account" size={26} />
